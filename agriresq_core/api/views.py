@@ -1,0 +1,26 @@
+from rest_framework import viewsets
+from rest_framework.permissions import IsAuthenticated
+from .models import WholesalerProfile, IoTNode, CropBatch, SensorLog
+from .serializers import (
+    WholesalerProfileSerializer, 
+    IoTNodeSerializer, 
+    CropBatchSerializer, 
+    SensorLogSerializer
+)
+
+class WholesalerProfileViewSet(viewsets.ModelViewSet):
+    queryset = WholesalerProfile.objects.all()
+    serializer_class = WholesalerProfileSerializer
+    # We will add authentication later, keeping it open for testing right now
+
+class IoTNodeViewSet(viewsets.ModelViewSet):
+    queryset = IoTNode.objects.all()
+    serializer_class = IoTNodeSerializer
+
+class CropBatchViewSet(viewsets.ModelViewSet):
+    queryset = CropBatch.objects.all()
+    serializer_class = CropBatchSerializer
+
+class SensorLogViewSet(viewsets.ModelViewSet):
+    queryset = SensorLog.objects.all()
+    serializer_class = SensorLogSerializer

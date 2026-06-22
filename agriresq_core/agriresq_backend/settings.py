@@ -13,18 +13,18 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    
-    # Third-party apps
+
+    # Third-party
     'rest_framework',
-    'rest_framework.authtoken', 
+    'rest_framework.authtoken',
     'corsheaders',
-    
+
     # Your app
     'api',
 ]
 
 MIDDLEWARE = [
-    'corsheaders.middleware.CorsMiddleware', 
+    'corsheaders.middleware.CorsMiddleware',  # must be first
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -34,13 +34,11 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-# Allow all origins for local development with Vite/React Native
-CORS_ALLOW_ALL_ORIGINS = True 
+CORS_ALLOW_ALL_ORIGINS = True
 
-# Set up Token Authentication for DRF
 REST_FRAMEWORK = {
     'DEFAULT_AUTHENTICATION_CLASSES': [
-        'rest_framework.authentication.TokenAuthentication', 
+        'rest_framework.authentication.TokenAuthentication',
     ],
 }
 
@@ -63,7 +61,6 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'agriresq_backend.wsgi.application'
 
-# Using SQLite for now
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
@@ -78,3 +75,15 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 USE_TZ = True
 STATIC_URL = 'static/'
+DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# -------------------------------------------------------
+# PRODUCTION EMAIL (Gmail SMTP)
+# -------------------------------------------------------
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'ivanjeffplaza@gmail.com'  # Your real Gmail
+EMAIL_HOST_PASSWORD = 'rvcnybfbgemlmnha'     # Your App Password (spaces removed)
+DEFAULT_FROM_EMAIL = 'ivanjeffplaza@gmail.com'

@@ -6,7 +6,9 @@ from .views import (
     CropBatchViewSet, 
     SensorLogViewSet,
     ListingViewSet,
-    TransactionViewSet
+    TransactionViewSet,
+    request_password_reset,
+    reset_password_confirm
 )
 
 router = DefaultRouter()
@@ -19,6 +21,9 @@ router.register(r'logs', SensorLogViewSet)
 router.register(r'listings', ListingViewSet)
 router.register(r'transactions', TransactionViewSet)
 
+
 urlpatterns = [
     path('', include(router.urls)),
+    path('auth/request-reset/', request_password_reset, name='request_reset'),
+        path('auth/reset-password/', reset_password_confirm, name='reset_confirm'),
 ]
